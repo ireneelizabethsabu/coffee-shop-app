@@ -1,4 +1,4 @@
-import {View, ScrollView, Text} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './Details.style';
 import DetailsFooter from '../../components/DetailsFooter/DetailsFooter';
@@ -20,7 +20,7 @@ const DetailsSreen = ({route}) => {
         />
       </ScrollView>
 
-      <DetailsFooter />
+      <DetailsFooter selectedItem={selectedItem} />
     </View>
   );
 };
