@@ -3,18 +3,13 @@ import {COLORS, SIZES, FONTS} from '../../theme';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.black,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     paddingVertical: 10,
   },
   title: {
     color: COLORS.white,
     fontSize: SIZES.huge,
-
     fontFamily: FONTS.Medium,
-  },
-  titleContainer: {
-    paddingVertical: 20,
   },
   tabText: (tab, activeTab) => ({
     fontFamily: FONTS.Regular,

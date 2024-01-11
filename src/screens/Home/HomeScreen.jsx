@@ -1,7 +1,6 @@
 import {View, Text, FlatList, TouchableOpacity, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './HomeScreen.style';
-import HomeHeader from '../../components/HomeHeader/HomeHeader';
 import Search from '../../components/Search/Search';
 import {SIZES} from '../../theme';
 import {useFetch} from '../../../hooks/useFetch';
@@ -17,17 +16,24 @@ const COFFEE = [
   'Macchiato',
 ];
 
-const HomeScreen = () => {
+const filterCoffeeByType = (type, CoffeeList) => {
+  return CoffeeList.filter(coffee => coffee.name === type);
+};
+
+const HomeScreen = ({navigation}) => {
   const {CoffeeData, BeansData} = useFetch();
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState(COFFEE[0]);
 
+  const navigateTo = (route, data) => {
+    navigation.push(route, {
+      data: data,
+    });
+  };
+
   return (
     <ScrollView style={styles.container}>
-      <HomeHeader />
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Find the best coffee for you</Text>
-      </View>
+      <Text style={styles.title}>Find the best coffee for you</Text>
       <Search search={search} setSearch={setSearch} />
       <FlatList
         data={COFFEE}
@@ -45,11 +51,19 @@ const HomeScreen = () => {
         }}
         style={styles.tabContainer}
       />
-      <List data={CoffeeData} />
+      <List
+        data={
+          activeTab === 'All'
+            ? CoffeeData
+            : filterCoffeeByType(activeTab, CoffeeData)
+        }
+        navigateTo={navigateTo}
+        type="Coffee"
+      />
       <View>
         <Text style={styles.beanTitle}>Coffee beans</Text>
       </View>
-      <List data={BeansData} />
+      <List data={BeansData} navigateTo={navigateTo} type="Bean" />
     </ScrollView>
   );
 };

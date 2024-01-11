@@ -1,14 +1,17 @@
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Card from '../Card/Card';
 import {styles} from './List.style';
 
-const List = ({data}) => {
+const List = ({data, navigateTo, type}) => {
   return (
     <FlatList
       data={data}
       renderItem={({item}) => (
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigateTo('Details', item);
+          }}>
           <Card data={item} />
         </TouchableOpacity>
       )}

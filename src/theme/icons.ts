@@ -6,4 +6,6 @@ export const icons = {
   grid: 'grid',
   add: 'add',
   star: 'star',
+  location: 'location',
+  water: 'water',
 };
