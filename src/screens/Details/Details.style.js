@@ -9,4 +9,7 @@ export const styles = StyleSheet.create({
   text: {
     color: COLORS.white,
   },
+  wrapper: {
+    padding: 20,
+  },
 });

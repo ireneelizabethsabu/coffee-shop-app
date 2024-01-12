@@ -1,4 +1,10 @@
-import {View, Text, ImageBackground, Image} from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {styles} from './DetailsHeader.style';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -8,13 +14,18 @@ const TextComponent = ({text, size, font, color = COLORS.white}) => (
   <Text style={styles.content(size, font, color)}>{text}</Text>
 );
 
-const DetailsHeader = ({data}) => {
+const DetailsHeader = ({data, favoriteIconTop, imageHeight}) => {
   return (
     <View>
       <ImageBackground
         source={data.imagelink_portrait}
         resizeMode="cover"
-        style={styles.image}>
+        imageStyle={styles.imageStyle}
+        style={styles.image(imageHeight)}>
+        <TouchableOpacity style={styles.iconContainer(favoriteIconTop)}>
+          <Icon name={icons.favorite} size={25} color={COLORS.red} />
+        </TouchableOpacity>
+
         <View style={styles.imageOverlayContainer}>
           <View style={styles.textWrapper}>
             <View>

@@ -37,11 +37,6 @@ export default function StackNavigator() {
               <Icon name={icons.chevronBack} size={25} color={COLORS.grey} />
             </TouchableOpacity>
           ),
-          headerRight: () => (
-            <TouchableOpacity style={styles.iconContainer}>
-              <Icon name={icons.favorite} size={25} color={COLORS.red} />
-            </TouchableOpacity>
-          ),
         })}
       />
     </Stack.Navigator>

@@ -1,10 +1,14 @@
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import {COLORS, SIZES} from '../../theme';
 
 export const styles = StyleSheet.create({
-  image: {
-    height: 600,
+  image: imageHeight => ({
+    height: imageHeight,
     justifyContent: 'flex-end',
+  }),
+  imageStyle: {
+    borderTopRightRadius: SIZES.radiusLarge,
+    borderTopLeftRadius: SIZES.radiusLarge,
   },
   imageOverlayContainer: {
     backgroundColor: COLORS.lightBlackTransparent,
@@ -39,10 +43,20 @@ export const styles = StyleSheet.create({
     flex: 1,
     gap: 10,
   },
-  wideBoxWrapper: {},
   smallBoxWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 20,
   },
+  iconContainer: topOffset => ({
+    width: 35,
+    height: 35,
+    borderRadius: SIZES.radius,
+    backgroundColor: COLORS.lightBlack,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: topOffset,
+    right: 20,
+  }),
 });

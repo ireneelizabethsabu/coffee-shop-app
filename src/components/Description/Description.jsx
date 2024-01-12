@@ -1,12 +1,11 @@
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 import React from 'react';
 import {styles} from './Description.style';
 import {COLORS, FONTS, SIZES} from '../../theme';
-import {TouchableOpacity} from 'react-native';
 
-const Description = ({description, prices, selectedItem, setSelectedItem}) => {
+const Description = ({description}) => {
   return (
-    <View style={styles.container}>
+    <>
       <Text style={styles.content(SIZES.large, FONTS.Bold, COLORS.white)}>
         Description
       </Text>
@@ -17,25 +16,7 @@ const Description = ({description, prices, selectedItem, setSelectedItem}) => {
         ]}>
         {description}
       </Text>
-      <Text style={styles.content(SIZES.large, FONTS.Bold, COLORS.white)}>
-        Sizes
-      </Text>
-      <View style={styles.sizeContainer}>
-        {prices.map(item => (
-          <TouchableOpacity
-            key={item.size}
-            style={styles.sizeBox(selectedItem.size, item.size)}
-            onPress={() => {
-              setSelectedItem(item);
-            }}>
-            <Text
-              style={styles.content(SIZES.large, FONTS.Medium, COLORS.white)}>
-              {item.size}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </View>
+    </>
   );
 };
 
