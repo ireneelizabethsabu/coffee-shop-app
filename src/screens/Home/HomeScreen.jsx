@@ -20,13 +20,13 @@ const filterCoffeeByType = (type, CoffeeList) => {
   return CoffeeList.filter(coffee => coffee.name === type);
 };
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({navigation, route}) => {
   const {CoffeeData, BeansData} = useFetch();
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState(COFFEE[0]);
 
-  const navigateTo = (route, data) => {
-    navigation.push(route, {
+  const navigateTo = (routeName, data) => {
+    navigation.push(routeName, {
       data: data,
     });
   };

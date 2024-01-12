@@ -14,7 +14,7 @@ function App() {
           background: COLORS.black,
         },
       }}>
-      <StatusBar backgroundColor={COLORS.black} />
+      <StatusBar backgroundColor={'transparent'} translucent={true} />
       <StackNavigator />
     </NavigationContainer>
   );

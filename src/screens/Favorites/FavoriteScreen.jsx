@@ -1,8 +1,9 @@
 import {Text, View} from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {styles} from './FavoriteScreen.style';
+import {useFocusEffect} from '@react-navigation/native';
 
-const FavoriteScreen = () => {
+const FavoriteScreen = ({navigation}) => {
   return (
     <View>
       <Text>FavoriteScreen</Text>

@@ -3,14 +3,14 @@ import {COLORS, SIZES} from '../../theme';
 
 export const styles = StyleSheet.create({
   image: {
-    height: 500,
+    height: 600,
     justifyContent: 'flex-end',
   },
   imageOverlayContainer: {
     backgroundColor: COLORS.lightBlackTransparent,
     padding: 20,
     flexDirection: 'row',
-    gap: 60,
+    gap: 40,
     borderTopLeftRadius: SIZES.radiusLarge,
     borderTopRightRadius: SIZES.radiusLarge,
   },

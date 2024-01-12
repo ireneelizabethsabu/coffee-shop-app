@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {icons, COLORS, SIZES, IMAGES} from '../theme';
+import {icons, COLORS, SIZES} from '../theme';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DetailsSreen from '../screens/Details/DetailsSreen';
 import TabNavigator from './TabNavigator';
@@ -14,32 +14,36 @@ export default function StackNavigator() {
     <Stack.Navigator
       screenOptions={{
         title: '',
-        headerStyle: {
-          backgroundColor: COLORS.black,
-        },
+        headerTransparent: true,
       }}>
       <Stack.Screen
         name="HomeTab"
         component={TabNavigator}
         options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Details"
+        component={DetailsSreen}
+        options={({navigation}) => ({
           headerLeft: () => (
-            <TouchableOpacity style={styles.iconContainer}>
-              <Icon name={icons.grid} size={20} color={COLORS.grey} />
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name={icons.chevronBack} size={25} color={COLORS.grey} />
             </TouchableOpacity>
           ),
           headerRight: () => (
             <TouchableOpacity style={styles.iconContainer}>
-              <Image
-                source={IMAGES.profilePhoto}
-                style={styles.profilePhoto}
-                resizeMode="contain"
-              />
+              <Icon name={icons.favorite} size={25} color={COLORS.red} />
             </TouchableOpacity>
           ),
-        }}
+        })}
       />
-
-      <Stack.Screen name="Details" component={DetailsSreen} />
     </Stack.Navigator>
   );
 }

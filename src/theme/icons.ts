@@ -8,4 +8,5 @@ export const icons = {
   star: 'star',
   location: 'location',
   water: 'water',
+  chevronBack: 'chevron-back',
 };

@@ -1,9 +1,9 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {styles} from './DetailsFooter.style';
+import {styles} from './Footer.style';
 import {COLORS, FONTS, SIZES} from '../../theme';
 
-const DetailsFooter = ({selectedItem}) => {
+const Footer = ({selectedItem}) => {
   return (
     <View style={styles.container}>
       <View style={styles.priceContainer}>
@@ -31,4 +31,4 @@ const DetailsFooter = ({selectedItem}) => {
   );
 };
 
-export default DetailsFooter;
+export default Footer;
