@@ -9,4 +9,5 @@ export const icons = {
   location: 'location',
   water: 'water',
   chevronBack: 'chevron-back',
+  subtract: 'remove',
 };

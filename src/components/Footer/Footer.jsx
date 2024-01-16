@@ -3,10 +3,10 @@ import React from 'react';
 import {styles} from './Footer.style';
 import {COLORS, FONTS, SIZES} from '../../theme';
 
-const Footer = ({selectedItem}) => {
+const Footer = ({selectedItem, btnText, btnHandler}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.priceContainer}>
+      <View>
         <Text
           style={styles.content(SIZES.small, FONTS.Regular, COLORS.lightGrey)}>
           Price
@@ -22,9 +22,9 @@ const Footer = ({selectedItem}) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.btnContainer}>
+      <TouchableOpacity style={styles.btnContainer} onPress={btnHandler}>
         <Text style={styles.content(SIZES.large, FONTS.Regular, COLORS.white)}>
-          Add to Cart
+          {btnText}
         </Text>
       </TouchableOpacity>
     </View>

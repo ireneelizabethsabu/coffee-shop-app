@@ -3,8 +3,11 @@ import React from 'react';
 import {styles} from './Card.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS, icons} from '../../theme';
+import {useStore} from '../../store/store';
 
 const Card = ({data}) => {
+  const addToCart = useStore(state => state.addToCart);
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -29,7 +32,21 @@ const Card = ({data}) => {
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.addBtnContainer}>
+        <TouchableOpacity
+          style={styles.addBtnContainer}
+          onPress={() =>
+            addToCart(
+              {
+                id: data.id,
+                name: data.name,
+                roasted: data.roasted,
+                imagelink_square: data.imagelink_square,
+                special_ingredient: data.special_ingredient,
+                quantity: [],
+              },
+              data.prices[0],
+            )
+          }>
           <Icon name={icons.add} color={COLORS.white} size={20} />
         </TouchableOpacity>
       </View>

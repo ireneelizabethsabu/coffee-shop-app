@@ -5,10 +5,13 @@ import Footer from '../../components/Footer/Footer';
 import DetailsHeader from '../../components/DetailsHeader/DetailsHeader';
 import Description from '../../components/Description/Description';
 import SizeBox from '../../components/SizeBox/SizeBox';
+import {useStore} from '../../store/store';
 
-const DetailsSreen = ({route}) => {
+const DetailsSreen = ({route, navigation}) => {
   const {data} = route.params;
   const [selectedItem, setSelectedItem] = useState(data.prices[0]);
+  const addToCart = useStore(state => state.addToCart);
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -27,7 +30,24 @@ const DetailsSreen = ({route}) => {
         </View>
       </ScrollView>
 
-      <Footer selectedItem={selectedItem} />
+      <Footer
+        selectedItem={selectedItem}
+        btnText="Add to cart"
+        btnHandler={() => {
+          addToCart(
+            {
+              id: data.id,
+              name: data.name,
+              roasted: data.roasted,
+              imagelink_square: data.imagelink_square,
+              special_ingredient: data.special_ingredient,
+              quantity: [],
+            },
+            selectedItem,
+          );
+          navigation.navigate('Cart');
+        }}
+      />
     </View>
   );
 };

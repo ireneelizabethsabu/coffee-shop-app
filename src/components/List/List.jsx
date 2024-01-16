@@ -1,16 +1,18 @@
 import {FlatList, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {forwardRef} from 'react';
 import Card from '../Card/Card';
 import {styles} from './List.style';
+import Empty from '../Empty/Empty';
 
-const List = ({data, navigateTo, type}) => {
+const List = forwardRef((props, ref) => {
   return (
     <FlatList
-      data={data}
+      ref={ref}
+      data={props.data}
       renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            navigateTo('Details', item);
+            props.navigateTo('Details', item);
           }}>
           <Card data={item} />
         </TouchableOpacity>
@@ -23,8 +25,9 @@ const List = ({data, navigateTo, type}) => {
       }}
       showsHorizontalScrollIndicator={false}
       style={styles.container}
+      ListEmptyComponent={<Empty text={`No ${props.type} available`} />}
     />
   );
-};
+});
 
 export default List;

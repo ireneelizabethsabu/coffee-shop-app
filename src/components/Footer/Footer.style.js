@@ -6,7 +6,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    justifyContent: 'space-around',
+    position: 'absolute',
+    justifyContent: 'space-between',
+    bottom: 0,
+    gap: 30,
+    flex: 1,
+    backgroundColor: COLORS.black,
   },
   btnContainer: {
     backgroundColor: COLORS.orange,
@@ -15,9 +20,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: SIZES.radiusLarge,
   },
-  priceContainer: {
-    flex: 0.5,
-  },
+
   content: (size, family, color) => ({
     fontSize: size,
     fontFamily: family,

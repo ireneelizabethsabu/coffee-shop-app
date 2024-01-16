@@ -1,10 +1,10 @@
 import {View, Text, FlatList, TouchableOpacity, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {styles} from './HomeScreen.style';
 import Search from '../../components/Search/Search';
 import {SIZES} from '../../theme';
-import {useFetch} from '../../../hooks/useFetch';
 import List from '../../components/List/List';
+import {useStore} from '../../store/store';
 
 const COFFEE = [
   'All',
@@ -21,7 +21,10 @@ const filterCoffeeByType = (type, CoffeeList) => {
 };
 
 const HomeScreen = ({navigation, route}) => {
-  const {CoffeeData, BeansData} = useFetch();
+  const listRef = useRef(null);
+  const BeansData = useStore(state => state.BeanList);
+  const CoffeeData = useStore(state => state.CoffeeList);
+
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState(COFFEE[0]);
 
@@ -39,7 +42,13 @@ const HomeScreen = ({navigation, route}) => {
         data={COFFEE}
         renderItem={({item}) => (
           <TouchableOpacity
-            onPress={() => setActiveTab(item)}
+            onPress={() => {
+              setActiveTab(item);
+              listRef?.current?.scrollToOffset({
+                animated: true,
+                offset: 0,
+              });
+            }}
             style={styles.tabWrapper(item, activeTab)}>
             <Text style={styles.tabText(item, activeTab)}>{item}</Text>
           </TouchableOpacity>
@@ -59,6 +68,7 @@ const HomeScreen = ({navigation, route}) => {
         }
         navigateTo={navigateTo}
         type="Coffee"
+        ref={listRef}
       />
       <View>
         <Text style={styles.beanTitle}>Coffee beans</Text>
