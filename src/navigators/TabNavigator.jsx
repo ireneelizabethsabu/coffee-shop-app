@@ -81,7 +81,7 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Notifications"
+        name="Order History"
         component={FavoriteScreen}
         options={{
           tabBarIcon: ({color}) => <TabIcon icon={icons.bell} color={color} />,

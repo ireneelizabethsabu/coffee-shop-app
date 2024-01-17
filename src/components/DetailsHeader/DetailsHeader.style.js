@@ -1,4 +1,4 @@
-import {StatusBar, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {COLORS, SIZES} from '../../theme';
 
 export const styles = StyleSheet.create({
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: topOffset,
+    top: topOffset + 30,
     right: 20,
   }),
 });

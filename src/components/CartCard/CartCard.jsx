@@ -12,7 +12,7 @@ const CartCard = ({cart}) => {
   const calculatePrice = useStore(state => state.calculatePrice);
 
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card}>
       <View style={styles.cardTopSection}>
         <Image
           source={cart.imagelink_square}
@@ -89,7 +89,7 @@ const CartCard = ({cart}) => {
           </View>
         ))}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

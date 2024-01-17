@@ -5,16 +5,24 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {styles} from './DetailsHeader.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS, FONTS, IMAGES, SIZES, icons} from '../../theme';
+import {useStore} from '../../store/store';
 
 const TextComponent = ({text, size, font, color = COLORS.white}) => (
   <Text style={styles.content(size, font, color)}>{text}</Text>
 );
 
 const DetailsHeader = ({data, favoriteIconTop, imageHeight}) => {
+  const FavoriteList = useStore(state => state.FavoriteList);
+  const addToFavorites = useStore(state => state.addToFavorites);
+  const removeFromFavorites = useStore(state => state.removeFromFavorites);
+  const [favorite, setFavorite] = useState(
+    FavoriteList.indexOf(data.id) > -1 ? true : false,
+  );
+
   return (
     <View>
       <ImageBackground
@@ -22,8 +30,19 @@ const DetailsHeader = ({data, favoriteIconTop, imageHeight}) => {
         resizeMode="cover"
         imageStyle={styles.imageStyle}
         style={styles.image(imageHeight)}>
-        <TouchableOpacity style={styles.iconContainer(favoriteIconTop)}>
-          <Icon name={icons.favorite} size={25} color={COLORS.red} />
+        <TouchableOpacity
+          style={styles.iconContainer(favoriteIconTop)}
+          onPress={() => {
+            setFavorite(!favorite);
+            if (FavoriteList.indexOf(data.id) > -1)
+              removeFromFavorites(data.id);
+            else addToFavorites(data.id);
+          }}>
+          <Icon
+            name={icons.favorite}
+            size={25}
+            color={favorite ? COLORS.red : COLORS.grey}
+          />
         </TouchableOpacity>
 
         <View style={styles.imageOverlayContainer}>

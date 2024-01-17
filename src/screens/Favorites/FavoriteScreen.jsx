@@ -1,15 +1,24 @@
 import {View, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {useFetch} from '../../../hooks/useFetch';
 import DetailsHeader from '../../components/DetailsHeader/DetailsHeader';
 import {styles} from './FavoriteScreen.style';
 import Description from '../../components/Description/Description';
+import {useStore} from '../../store/store';
 
 const FavoriteScreen = ({navigation}) => {
-  const {CoffeeData} = useFetch();
+  const CoffeeList = useStore(state => state.CoffeeList);
+  const BeanList = useStore(state => state.BeanList);
+  const FavoriteList = useStore(state => state.FavoriteList);
+
+  const filterFavorites = () => {
+    return CoffeeList.concat(BeanList).filter(element => {
+      if (FavoriteList.indexOf(element.id) > -1) return true;
+      return false;
+    });
+  };
   return (
     <FlatList
-      data={CoffeeData}
+      data={filterFavorites()}
       renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
