@@ -3,7 +3,7 @@ import React from 'react';
 import {styles} from './Footer.style';
 import {COLORS, FONTS, SIZES} from '../../theme';
 
-const Footer = ({selectedItem, btnText, btnHandler}) => {
+const Footer = ({selectedItem, btnText, btnHandler, disabled = false}) => {
   return (
     <View style={styles.container}>
       <View>
@@ -22,7 +22,10 @@ const Footer = ({selectedItem, btnText, btnHandler}) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.btnContainer} onPress={btnHandler}>
+      <TouchableOpacity
+        style={styles.btnContainer}
+        onPress={btnHandler}
+        disabled={disabled}>
         <Text style={styles.content(SIZES.large, FONTS.Regular, COLORS.white)}>
           {btnText}
         </Text>

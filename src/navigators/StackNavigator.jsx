@@ -2,10 +2,11 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {icons, COLORS, SIZES} from '../theme';
+import {icons, COLORS, SIZES, FONTS} from '../theme';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DetailsSreen from '../screens/Details/DetailsSreen';
 import TabNavigator from './TabNavigator';
+import PaymentScreen from '../screens/Payments/PaymentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +15,6 @@ export default function StackNavigator() {
     <Stack.Navigator
       screenOptions={{
         title: '',
-        headerTransparent: true,
       }}>
       <Stack.Screen
         name="HomeTab"
@@ -37,6 +37,32 @@ export default function StackNavigator() {
               <Icon name={icons.chevronBack} size={25} color={COLORS.grey} />
             </TouchableOpacity>
           ),
+          headerTransparent: true,
+        })}
+      />
+      <Stack.Screen
+        name="Payment"
+        component={PaymentScreen}
+        options={({navigation}) => ({
+          headerLeft: () => (
+            <TouchableOpacity
+              style={styles.iconContainer}
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name={icons.chevronBack} size={25} color={COLORS.grey} />
+            </TouchableOpacity>
+          ),
+          title: 'Payment',
+          headerTitleStyle: {
+            color: COLORS.white,
+            fontSize: SIZES.xxlarge,
+            fontFamily: FONTS.Medium,
+          },
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: COLORS.black,
+          },
         })}
       />
     </Stack.Navigator>

@@ -12,4 +12,5 @@ export const icons = {
   subtract: 'remove',
   delete: 'trash',
   close: 'close-outline',
+  wallet: 'wallet',
 };

@@ -7,7 +7,7 @@ import Empty from '../../components/Empty/Empty';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CartCard from '../../components/CartCard/CartCard';
 
-const CartScreen = () => {
+const CartScreen = ({navigation}) => {
   const CartData = useStore(state => state.CartList);
   const CartPrice = useStore(state => state.CartPrice);
 
@@ -41,6 +41,8 @@ const CartScreen = () => {
           price: CartPrice,
         }}
         btnText="Pay"
+        btnHandler={() => navigation.push('Payment')}
+        disabled={CartPrice === 0}
       />
     </>
   );

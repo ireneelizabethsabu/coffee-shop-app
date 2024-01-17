@@ -8,6 +8,7 @@ import HomeScreen from '../screens/Home/HomeScreen';
 import {StyleSheet, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CartScreen from '../screens/Cart/CartScreen';
+import OrderHistoryScreen from '../screens/OrderHistory/OrderHistoryScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -82,7 +83,7 @@ export default function TabNavigator() {
       />
       <Tab.Screen
         name="Order History"
-        component={FavoriteScreen}
+        component={OrderHistoryScreen}
         options={{
           tabBarIcon: ({color}) => <TabIcon icon={icons.bell} color={color} />,
         }}
