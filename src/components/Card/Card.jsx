@@ -7,7 +7,7 @@ import {useStore} from '../../store/store';
 
 const Card = ({data}) => {
   const addToCart = useStore(state => state.addToCart);
-
+  const calculatePrice = useStore(state => state.calculatePrice);
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -34,7 +34,7 @@ const Card = ({data}) => {
 
         <TouchableOpacity
           style={styles.addBtnContainer}
-          onPress={() =>
+          onPress={() => {
             addToCart(
               {
                 id: data.id,
@@ -45,8 +45,9 @@ const Card = ({data}) => {
                 quantity: [],
               },
               data.prices[0],
-            )
-          }>
+            );
+            calculatePrice();
+          }}>
           <Icon name={icons.add} color={COLORS.white} size={20} />
         </TouchableOpacity>
       </View>

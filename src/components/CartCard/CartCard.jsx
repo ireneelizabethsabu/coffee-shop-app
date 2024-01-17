@@ -7,7 +7,9 @@ import {useStore} from '../../store/store';
 
 const CartCard = ({cart}) => {
   const addToCart = useStore(state => state.addToCart);
-  const removeFromCart = useStore(state => state.removeFromCart);
+  const removeItemFromCart = useStore(state => state.removeItemFromCart);
+  const removeGroupFromCart = useStore(state => state.removeGroupFromCart);
+  const calculatePrice = useStore(state => state.calculatePrice);
 
   return (
     <View style={styles.card}>
@@ -34,8 +36,16 @@ const CartCard = ({cart}) => {
             {cart.roasted}
           </Text>
         </View>
+        <TouchableOpacity
+          style={styles.delete}
+          onPress={() => {
+            removeGroupFromCart(cart.id);
+            calculatePrice();
+          }}>
+          <Icon name={icons.delete} size={20} color={COLORS.lightGrey} />
+        </TouchableOpacity>
       </View>
-      <View style={styles.cardBottomSection}>
+      <View>
         {cart.quantity.map(item => (
           <View style={styles.quantityRow} key={`${cart.id}-${item.size}`}>
             <Text
@@ -52,7 +62,8 @@ const CartCard = ({cart}) => {
             <TouchableOpacity
               style={[styles.quantityItem(COLORS.orange), styles.icon]}
               onPress={() => {
-                removeFromCart(cart, item.size);
+                removeItemFromCart(cart, item.size);
+                calculatePrice();
               }}>
               <Icon name={icons.subtract} size={30} color={COLORS.white} />
             </TouchableOpacity>
@@ -71,6 +82,7 @@ const CartCard = ({cart}) => {
                   price: item.price,
                   currency: '$',
                 });
+                calculatePrice();
               }}>
               <Icon name={icons.add} size={30} color={COLORS.white} />
             </TouchableOpacity>

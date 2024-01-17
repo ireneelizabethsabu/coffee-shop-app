@@ -21,15 +21,13 @@ export const styles = StyleSheet.create({
     fontFamily: family,
     color: color,
   }),
-  cardBottomSection: {
-    paddingVertical: 10,
-  },
+
   quantityRow: {
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
-    paddingBottom: 10,
+    paddingTop: 10,
   },
   quantityItem: bgColor => ({
     color: COLORS.white,
@@ -55,5 +53,11 @@ export const styles = StyleSheet.create({
     borderRadius: SIZES.radiusLarge,
     padding: 15,
     marginTop: 10,
+  },
+  delete: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    padding: 10,
   },
 });

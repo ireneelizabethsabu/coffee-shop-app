@@ -11,7 +11,7 @@ const DetailsSreen = ({route, navigation}) => {
   const {data} = route.params;
   const [selectedItem, setSelectedItem] = useState(data.prices[0]);
   const addToCart = useStore(state => state.addToCart);
-
+  const calculatePrice = useStore(state => state.calculatePrice);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -45,6 +45,7 @@ const DetailsSreen = ({route, navigation}) => {
             },
             selectedItem,
           );
+          calculatePrice();
           navigation.navigate('Cart');
         }}
       />

@@ -37,10 +37,9 @@ export const createCartSlice = set => ({
           });
           state.CartList.push(item);
         }
-        state.calculatePrice();
       }),
     ),
-  removeFromCart: (item, size) =>
+  removeItemFromCart: (item, size) =>
     set(
       produce(state => {
         let mainPosition = -1;
@@ -64,8 +63,6 @@ export const createCartSlice = set => ({
         if (mainPosition > -1) {
           state.CartList.splice(mainPosition, 1);
         }
-
-        state.calculatePrice();
       }),
     ),
   calculatePrice: () =>
@@ -77,7 +74,19 @@ export const createCartSlice = set => ({
             price += element.quantity * element.price;
           });
         });
-        state.CartPrice = price;
+        state.CartPrice = price.toFixed(2);
+      }),
+    ),
+  removeGroupFromCart: id =>
+    set(
+      produce(state => {
+        let position = -1;
+        state.CartList.forEach((cart, index) => {
+          if (cart.id === id) position = index;
+        });
+        if (position > -1) {
+          state.CartList.splice(position, 1);
+        }
       }),
     ),
 });

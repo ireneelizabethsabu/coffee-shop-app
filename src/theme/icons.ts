@@ -10,4 +10,6 @@ export const icons = {
   water: 'water',
   chevronBack: 'chevron-back',
   subtract: 'remove',
+  delete: 'trash',
+  close: 'close-outline',
 };
